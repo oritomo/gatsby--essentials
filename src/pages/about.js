@@ -8,10 +8,19 @@ import Layout from "../components/layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUtensils, faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 
-export default ({ data }) =>
+import SEO from "../components/seo";
+
+export default ({ data,location }) =>
   (
     <Layout>
-
+      <SEO 
+          pageTitle="ESSENTIALについて"
+          pageDesc="食べ物についての情報を発信しているサイトです"
+          pagePath={location.pathname}
+          pageimg={data.about.childImageSharp.original.src}
+          pageimgw={data.about.childImageSharp.original.width}
+          pageimgh={data.about.childImageSharp.original.height}
+      />
       <div>
         <div className="eyecatch">
           <figure>
@@ -57,6 +66,11 @@ export const query = graphql`
         childImageSharp {
           fluid(maxWidth: 1600) {
             ...GatsbyImageSharpFluid_withWebp
+          }
+          original{
+            src
+            height
+            width
           }
         }
       }
